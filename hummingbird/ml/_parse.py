@@ -247,6 +247,8 @@ def _parse_sklearn_single_model(topology, model, inputs):
         A list of output `onnxconverter_common.topology.Variable` which will be passed to next stage
     """
     if isinstance(model, str):
+        if model == "identity":
+            return inputs
         raise RuntimeError("Parameter model must be an object not a " "string '{0}'.".format(model))
 
     alias = get_sklearn_api_operator_name(type(model))
